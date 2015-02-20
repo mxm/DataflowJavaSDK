@@ -151,15 +151,24 @@ public class KeyedPCollectionTuple<K> implements PInput {
    * A utility class to help ensure coherence of tag and input PCollection
    * types.
    */
-  static class TaggedKeyedPCollection<K, V> {
+  public static class TaggedKeyedPCollection<K, V> {
+
     final TupleTag<V> tupleTag;
     final PCollection<KV<K, V>> pCollection;
 
     public TaggedKeyedPCollection(
-        TupleTag<V> tupleTag,
-        PCollection<KV<K, V>> pCollection) {
+            TupleTag<V> tupleTag,
+            PCollection<KV<K, V>> pCollection) {
       this.tupleTag = tupleTag;
       this.pCollection = pCollection;
+    }
+
+    public PCollection<KV<K, V>> getCollection() {
+      return pCollection;
+    }
+
+    public TupleTag<V> getTupleTag() {
+      return tupleTag;
     }
   }
 
